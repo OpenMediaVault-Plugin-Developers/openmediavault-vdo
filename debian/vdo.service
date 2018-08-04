@@ -1,0 +1,13 @@
+[Unit]
+Description=VDO volume services
+Before=local-fs-pre.target
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/vdo start --all --confFile /etc/vdoconf.yml
+ExecStop=/usr/bin/vdo stop --all --confFile /etc/vdoconf.yml
+
+[Install]
+WantedBy=multi-user.target
