@@ -1,0 +1,46 @@
+#!/bin/bash
+
+tmp_path="/tmp/vdo"
+
+kvdo_dir="${tmp_path}/kvdo"
+kvdo_file="kvdo.tar.gz"
+kvdo_version="6.2.0.187"
+
+vdo_dir="${tmp_path}/vdo"
+vdo_file="vdo.tar.gz"
+vdo_version="6.2.0.187"
+
+if [ -d "${tmp_path}" ]; then
+  rm -r "${tmp_path}"
+fi
+echo ${kvdo_dir}
+
+mkdir -p "${kvdo_dir}"
+mkdir -p "${vdo_dir}"
+
+# build modules
+wget -O "${kvdo_dir}/${kvdo_file}" https://github.com/dm-vdo/kvdo/archive/${kvdo_version}.tar.gz
+wget -O "${vdo_dir}/${vdo_file}" https://github.com/dm-vdo/vdo/archive/${vdo_version}.tar.gz
+
+# uncompress and build
+cd ${kvdo_dir}
+
+tar xzf ${kvdo_file} --strip-components=1
+make -C /usr/src/linux-headers-$(uname -r) M=$(pwd) 
+make -C /usr/src/linux-headers-$(uname -r) M=$(pwd) modules_install
+
+# add uds and kvdo modules to load file
+echo "uds\nkvdo" > /etc/modules-load.d/vdo.conf
+
+# load modules
+depmod -A
+modprobe uds
+modprobe kvdo
+
+cd ${vdo_dir}
+
+tar xzf ${vdo_file} --strip-components=1
+make
+make install
+
+exit 0

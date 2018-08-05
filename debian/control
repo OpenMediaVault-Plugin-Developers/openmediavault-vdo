@@ -1,0 +1,19 @@
+Source: openmediavault-vdo
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+XB-Plugin-Section: filesystems
+
+Package: openmediavault-vdo
+Architecture: all
+Depends: build-essentials,
+         libdevmapper-dev,
+         linux-headers-amd64 | linux-headers-586 | linux-headers-686 | linux-headers-686-pae | pve-headers,
+         openmediavault (>= 4.1.9),
+         python3-yaml,
+         uuid-dev,
+         zlib1g-dev
+         ${misc:Depends}
+Description: ATA-over-ethernet plugin for OpenMediaVault
