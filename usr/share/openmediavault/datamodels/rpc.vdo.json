@@ -1,0 +1,37 @@
+[{
+	"type": "rpc",
+	"id": "rpc.vdo.createdevice",
+	"params": {
+		"type": "object",
+		"properties": {
+			"name": {
+				"type": "string",
+				"required": true
+			},
+			"device": {
+				"type": "string",
+				"required": true
+			},
+			"size": {
+				"type": "string",
+				"required": true
+			},
+			"policy": {
+				"type": "string",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.vdo.removedevice",
+	"params": {
+		"type": "object",
+		"properties": {
+			"name": {
+				"type": "string",
+				"required": true
+			}
+		}
+	}
+}]

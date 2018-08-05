@@ -30,7 +30,7 @@ make -C /usr/src/linux-headers-$(uname -r) M=$(pwd)
 make -C /usr/src/linux-headers-$(uname -r) M=$(pwd) modules_install
 
 # add uds and kvdo modules to load file
-echo "uds\nkvdo" > /etc/modules-load.d/vdo.conf
+printf "uds\nkvdo" > /etc/modules-load.d/vdo.conf
 
 # load modules
 depmod -A

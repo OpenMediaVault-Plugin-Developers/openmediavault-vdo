@@ -1,0 +1,11 @@
+{
+	"type": "config",
+	"id": "conf.service.vdo",
+	"title": "VDO",
+	"queryinfo": {
+		"xpath": "//services/vdo",
+		"iterable": false
+	},
+	"properties": {
+	}
+}

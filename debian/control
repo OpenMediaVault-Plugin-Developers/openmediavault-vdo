@@ -8,7 +8,7 @@ XB-Plugin-Section: filesystems
 
 Package: openmediavault-vdo
 Architecture: all
-Depends: build-essentials,
+Depends: build-essential,
          libdevmapper-dev,
          linux-headers-amd64 | linux-headers-586 | linux-headers-686 | linux-headers-686-pae | pve-headers,
          openmediavault (>= 4.1.9),
