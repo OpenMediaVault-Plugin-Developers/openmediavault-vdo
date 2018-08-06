@@ -20,7 +20,7 @@
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 // require("js/omv/form/field/plugin/FieldInfo.js")
 
-Ext.define('OMV.module.admin.storage.vdo.Target', {
+Ext.define('OMV.module.admin.storage.vdo.Device', {
     extend: 'OMV.workspace.window.Form',
     requires: [
         'OMV.form.field.plugin.FieldInfo',

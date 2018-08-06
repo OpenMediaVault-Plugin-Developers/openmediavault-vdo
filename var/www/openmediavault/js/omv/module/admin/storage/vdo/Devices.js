@@ -25,6 +25,7 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
+// require("js/omv/module/admin/storage/vdo/Device.js")
 
 Ext.define('OMV.module.admin.storage.vdo.Devices', {
     extend: 'OMV.workspace.grid.Panel',
@@ -105,6 +106,20 @@ Ext.define('OMV.module.admin.storage.vdo.Devices', {
             })
         });
         me.callParent(arguments);
+    },
+
+    onAddButton: function () {
+        var me = this;
+        Ext.create("OMV.module.admin.storage.vdo.Device", {
+            title     : _("Add device"),
+            uuid      : OMV.UUID_UNDEFINED,
+            listeners : {
+                scope  : me,
+                submit : function () {
+                    this.doReload();
+                }
+            }
+        }).show();
     }
 });
 
