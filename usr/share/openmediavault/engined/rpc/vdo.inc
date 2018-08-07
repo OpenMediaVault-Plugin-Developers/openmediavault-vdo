@@ -71,17 +71,17 @@ class OMVRpcServiceVdo extends \OMV\Rpc\ServiceAbstract
         $cmd->execute($output, $result);
         if ($result == 0) {
             throw new \OMV\Exception(
-                "Device name %s already in use.", $params['name']
+                'Device name %s already in use.', $params['name']
             );
         }
         // create the device
         $cmdArgs = [];
-        $cmdArgs[] = "create";
-        $cmdArgs[] = sprintf("--name=%s", $params['name']);
-        $cmdArgs[] = sprintf("--device=%s", $device);
-        $cmdArgs[] = sprintf("--vdoLogicalSize=%s", $params['size']);
-        $cmdArgs[] = sprintf("--writePolicy=%s", $params['policy']);
-        $cmd = new \OMV\System\Process("vdo", $cmdArgs);
+        $cmdArgs[] = 'create';
+        $cmdArgs[] = sprintf('--name=%s', $params['name']);
+        $cmdArgs[] = sprintf('--device=%s', $device);
+        $cmdArgs[] = sprintf('--vdoLogicalSize=%s', $params['size']);
+        $cmdArgs[] = sprintf('--writePolicy=%s', $params['policy']);
+        $cmd = new \OMV\System\Process('vdo', $cmdArgs);
         $cmd->execute($output, $result);
     }
 
@@ -92,10 +92,11 @@ class OMVRpcServiceVdo extends \OMV\Rpc\ServiceAbstract
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, 'rpc.vdo.deletedevice');
         // remove the device
+        $device = explode('/', $params['device']);
         $cmdArgs = [];
-        $cmdArgs[] = "remove";
-        $cmdArgs[] = sprintf("--name %s", $params['name']);
-        $cmd = new \OMV\System\Process("vdo", $cmdArgs);
+        $cmdArgs[] = 'remove';
+        $cmdArgs[] = sprintf('--name %s', $device[3]);
+        $cmd = new \OMV\System\Process('vdo', $cmdArgs);
         $cmd->execute($output, $result);
     }
 }

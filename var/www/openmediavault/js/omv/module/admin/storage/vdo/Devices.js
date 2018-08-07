@@ -110,16 +110,30 @@ Ext.define('OMV.module.admin.storage.vdo.Devices', {
 
     onAddButton: function () {
         var me = this;
-        Ext.create("OMV.module.admin.storage.vdo.Device", {
-            title     : _("Add device"),
-            uuid      : OMV.UUID_UNDEFINED,
-            listeners : {
-                scope  : me,
-                submit : function () {
+        Ext.create('OMV.module.admin.storage.vdo.Device', {
+            title: _('Add device'),
+            listeners: {
+                scope: me,
+                submit: function () {
                     this.doReload();
                 }
             }
         }).show();
+    },
+
+    doDeletion: function (record) {
+        var me = this;
+        OMV.Rpc.request({
+            scope: me,
+            callback: me.onDeletion,
+            rpcData: {
+                service: 'VDO',
+                method: 'removeDevice',
+                param: {
+                    device: record.get('device')
+                }
+            }
+        });
     }
 });
 

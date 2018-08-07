@@ -28,7 +28,7 @@
 	"params": {
 		"type": "object",
 		"properties": {
-			"name": {
+			"device": {
 				"type": "string",
 				"required": true
 			}
